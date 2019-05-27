@@ -3,11 +3,12 @@
 module wilson(
 	input clock,
 	input [31:0] current,
-	input [31:0] v_in,
-	input [31:0] r_in,
 	output [31:0] v_out,
 	output [31:0] r_out
 );
+
+reg [31:0] v_in = 32'h8000CCCD;
+reg [31:0] r_in = 32'h00000000;
 
 // dv/dt
 reg [31:0] c_inverse = 32'h00016710; // 0.8^-1 = 1.25
@@ -82,5 +83,11 @@ qmult mfp_r_sum_m_diff(r_sum, diff, r_sum_m_diff);
 // result
 qadd afp_res_v(v_in, v_sum_m_diff, v_out);
 qadd afp_res_r(r_in, r_sum_m_diff, r_out);
+
+always @ (posedge clock)
+begin
+  v_in = v_out;
+  r_in = r_out;
+end
 
 endmodule
