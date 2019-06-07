@@ -11,7 +11,7 @@ reg [15:0] _fractional_part = 16'h0000;
 
 always @ (posedge clock)
 begin
-   _sign = fixed_point_value[31];
+	_sign = fixed_point_value[31];
 	
 	_integer_part = fixed_point_value[30:16];
 	

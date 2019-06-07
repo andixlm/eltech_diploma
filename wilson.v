@@ -166,8 +166,8 @@ qadd afp_res_r_full(r_in, r_sum_m_diff_full, r_out);
 
 always @ (posedge clock)
 begin
-  v_in = v_out;
-  r_in = r_out;
+	v_in = v_out;
+	r_in = r_out;
 end
 
 endmodule
